@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SiteSniper — Free Websites for Local Service Businesses</title>
+<meta name="description" content="SiteSniper builds free custom websites for local service businesses. Fast, professional, no hassle. $750 setup, $100/mo hosting."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --neon:#00f5d4;
+  --neon2:#7c3aed;
+  --neon3:#f97316;
+  --dark:#050510;
+  --dark2:#0d0d1f;
+  --dark3:#12122a;
+  --card:#111128;
+  --border:rgba(255,255,255,.07);
+  --text:#e2e8f0;
+  --muted:#94a3b8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
+
+/* ─── NOISE OVERLAY ─── */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:.4;pointer-events:none;z-index:0}
+
+/* ─── GLOW BLOBS ─── */
+.blob{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0}
+.blob1{width:600px;height:600px;background:radial-gradient(circle,rgba(0,245,212,.12),transparent 70%);top:-200px;right:-100px}
+.blob2{width:500px;height:500px;background:radial-gradient(circle,rgba(124,58,237,.1),transparent 70%);bottom:100px;left:-150px}
+.blob3{width:400px;height:400px;background:radial-gradient(circle,rgba(249,115,22,.08),transparent 70%);top:50%;left:40%}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;background:rgba(5,5,16,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--neon),var(--neon2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:900;color:#000}
+.nav-brand-text{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;color:#fff}
+.nav-brand-text span{color:var(--neon)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:linear-gradient(135deg,var(--neon),var(--neon2));color:#000;padding:10px 24px;border-radius:8px;text-decoration:none;font-weight:700;font-size:.88rem;transition:all .25s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,245,212,.3)}
+@media(max-width:768px){.nav-links{display:none}nav{padding:14px 20px}}
+
+/* ─── HERO ─── */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;z-index:1}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(0,245,212,.08);border:1px solid rgba(0,245,212,.2);color:var(--neon);padding:8px 20px;border-radius:100px;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:32px;animation:fadeUp .8s .1s both}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--neon);animation:livepulse 2s infinite}
+@keyframes livepulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,245,212,.4)}50%{opacity:.6;box-shadow:0 0 0 6px rgba(0,245,212,0)}}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:700;line-height:1;letter-spacing:-2px;color:#fff;margin-bottom:24px;animation:fadeUp .8s .2s both}
+.hero h1 .line2{display:block;background:linear-gradient(135deg,var(--neon),var(--neon2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero h1 .line3{display:block;color:var(--neon3)}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:560px;margin:0 auto 40px;line-height:1.8;animation:fadeUp .8s .35s both}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp .8s .5s both}
+.btn-neon{background:linear-gradient(135deg,var(--neon),var(--neon2));color:#000;padding:16px 38px;border-radius:10px;text-decoration:none;font-weight:800;font-size:1rem;transition:all .25s;box-shadow:0 0 40px rgba(0,245,212,.2)}
+.btn-neon:hover{transform:translateY(-3px);box-shadow:0 0 60px rgba(0,245,212,.4)}
+.btn-outline{background:transparent;color:#fff;padding:16px 38px;border-radius:10px;text-decoration:none;font-weight:600;border:1px solid rgba(255,255,255,.15);transition:all .25s;backdrop-filter:blur(4px)}
+.btn-outline:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3)}
+
+/* ─── HERO STATS — all same neon color ─── */
+.hero-stats{display:flex;gap:48px;justify-content:center;flex-wrap:wrap;margin-top:64px;padding-top:48px;border-top:1px solid var(--border);animation:fadeUp .8s .7s both}
+.hero-stat .num{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:700;color:var(--neon)}
+.hero-stat .num span{color:var(--neon)}
+.hero-stat .lbl{color:var(--muted);font-size:.8rem;margin-top:4px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ─── MARQUEE TICKER ─── */
+.ticker{background:linear-gradient(135deg,var(--neon),var(--neon2));padding:12px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:1}
+.ticker-inner{display:inline-flex;animation:ticker 25s linear infinite}
+.ticker-item{color:#000;font-weight:700;font-size:.82rem;padding:0 32px;display:flex;align-items:center;gap:10px}
+.ticker-item::before{content:'◆';font-size:.5rem}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── SECTION BASE ─── */
+.section{padding:100px 24px;position:relative;z-index:1}
+.container{max-width:1100px;margin:0 auto}
+.section-eyebrow{display:inline-block;color:var(--neon);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:3px;margin-bottom:14px}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4.5vw,3rem);font-weight:700;color:#fff;line-height:1.1;margin-bottom:16px;letter-spacing:-1px}
+.section-title span{background:linear-gradient(135deg,var(--neon),var(--neon2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-sub{color:var(--muted);font-size:.98rem;line-height:1.8;max-width:540px;margin-bottom:60px}
+
+/* ─── PROBLEM SECTION ─── */
+.problem-section{background:var(--dark2)}
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.problem-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;position:relative;overflow:hidden;transition:all .35s}
+.problem-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(249,115,22,.06),transparent);opacity:0;transition:opacity .35s}
+.problem-card:hover{border-color:rgba(249,115,22,.3);transform:translateY(-4px)}
+.problem-card:hover::before{opacity:1}
+.problem-num{font-family:'Space Grotesk',sans-serif;font-size:3.5rem;font-weight:700;color:rgba(249,115,22,.15);line-height:1;margin-bottom:16px}
+.problem-card h3{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:10px}
+.problem-card p{color:var(--muted);font-size:.88rem;line-height:1.75}
+.problem-stat{display:inline-block;background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.2);color:var(--neon3);font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:20px;margin-top:14px}
+
+/* ─── HOW IT WORKS ─── */
+.how-section{background:var(--dark)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;position:relative}
+.steps::before{content:'';position:absolute;top:36px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--neon),var(--neon2),transparent);opacity:.3}
+.step{text-align:center;padding:0 16px}
+.step-num{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--neon),var(--neon2));display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;color:#000;margin:0 auto 24px;box-shadow:0 0 40px rgba(0,245,212,.2)}
+.step h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:10px}
+.step p{color:var(--muted);font-size:.86rem;line-height:1.7}
+
+/* ─── TEMPLATES CAROUSEL ─── */
+.templates-section{background:var(--dark2);overflow:hidden}
+.template-track-wrap{overflow:hidden;position:relative;margin-top:48px}
+.template-track-wrap::before,.template-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+.template-track-wrap::before{left:0;background:linear-gradient(90deg,var(--dark2),transparent)}
+.template-track-wrap::after{right:0;background:linear-gradient(-90deg,var(--dark2),transparent)}
+.template-track{display:flex;gap:24px;animation:slideTrack 40s linear infinite;width:max-content}
+.template-track:hover{animation-play-state:paused}
+@keyframes slideTrack{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.template-card{width:360px;flex-shrink:0;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--card);transition:all .35s;cursor:pointer}
+.template-card:hover{border-color:rgba(0,245,212,.3);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.template-preview{height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#0d0d1f}
+.template-preview img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+
+.template-preview video{width:100%;height:100%;object-fit:cover;display:block;position:absolute;top:0;left:0}
+.video-preview{position:relative;}
+
+.template-preview .preview-label{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.75);color:#fff;font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:6px;backdrop-filter:blur(4px)}
+.template-info{padding:18px 20px}
+.template-info h4{font-size:.92rem;font-weight:700;color:#fff;margin-bottom:4px}
+.template-info p{font-size:.78rem;color:var(--muted)}
+.template-tag{display:inline-block;background:rgba(0,245,212,.08);border:1px solid rgba(0,245,212,.2);color:var(--neon);font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:10px}
+
+/* ─── FEATURES ─── */
+.features-section{background:var(--dark)}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.feature-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;transition:all .35s;position:relative;overflow:hidden}
+.feature-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--neon),var(--neon2));transform:scaleX(0);transition:transform .35s;transform-origin:left}
+.feature-card:hover{border-color:rgba(0,245,212,.2);transform:translateY(-4px)}
+.feature-card:hover::after{transform:scaleX(1)}
+.feature-icon{font-size:1.8rem;margin-bottom:16px}
+.feature-card h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:10px}
+.feature-card p{color:var(--muted);font-size:.86rem;line-height:1.75}
+
+/* ─── PRICING ─── */
+.pricing-section{background:var(--dark2)}
+.pricing-wrap{max-width:520px;margin:0 auto}
+.pricing-card{background:var(--card);border:1px solid rgba(0,245,212,.2);border-radius:24px;overflow:hidden;box-shadow:0 0 80px rgba(0,245,212,.08)}
+.pricing-top{background:linear-gradient(135deg,rgba(0,245,212,.06),rgba(124,58,237,.06));padding:48px 48px 36px;text-align:center;border-bottom:1px solid var(--border)}
+.pricing-badge{display:inline-block;background:linear-gradient(135deg,var(--neon),var(--neon2));color:#000;font-size:.72rem;font-weight:800;padding:6px 18px;border-radius:100px;text-transform:uppercase;letter-spacing:1px;margin-bottom:24px}
+.pricing-amount{font-family:'Space Grotesk',sans-serif;font-size:5rem;font-weight:700;color:#fff;line-height:1}
+/* ─── $ sign white ─── */
+.pricing-amount sup{font-size:2rem;vertical-align:super;color:#fff}
+.pricing-period{color:var(--muted);font-size:.88rem;margin-top:8px}
+.pricing-recurring{color:var(--neon);font-size:.82rem;margin-top:6px;font-weight:600}
+.pricing-features{padding:36px 48px}
+.pricing-feature{display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.88rem;color:var(--text)}
+.pricing-feature:last-child{border-bottom:none}
+.check{width:22px;height:22px;background:rgba(0,245,212,.1);border:1px solid rgba(0,245,212,.3);color:var(--neon);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0}
+.pricing-cta{padding:0 48px 48px;text-align:center}
+.pricing-btn{display:block;background:linear-gradient(135deg,var(--neon),var(--neon2));color:#000;padding:18px;border-radius:12px;text-decoration:none;font-weight:800;font-size:1rem;margin-bottom:16px;transition:all .25s}
+.pricing-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,245,212,.3)}
+.pricing-note{color:var(--muted);font-size:.78rem}
+
+/* ─── CONTACT ─── */
+.contact-section{background:var(--dark2)}
+.contact-wrap{max-width:680px;margin:0 auto}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:56px;box-shadow:0 0 80px rgba(0,0,0,.3)}
+.contact-methods{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px}
+.contact-method{flex:1;min-width:200px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:20px;display:flex;align-items:center;gap:14px;transition:all .25s}
+.contact-method:hover{border-color:rgba(0,245,212,.2)}
+.contact-method .icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--neon),var(--neon2));display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.contact-method h4{font-size:.82rem;font-weight:700;color:#fff}
+.contact-method p{font-size:.78rem;color:var(--muted)}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:.8rem;font-weight:600;color:var(--muted);margin-bottom:8px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:0}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;color:#fff;font-size:.9rem;font-family:'Inter',sans-serif;transition:border-color .2s}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--neon);background:rgba(0,245,212,.03)}
+.form-group textarea{min-height:120px;resize:vertical}
+.form-group select option{background:#111128;color:#fff}
+.form-submit{width:100%;background:linear-gradient(135deg,var(--neon),var(--neon2));color:#000;border:none;padding:18px;border-radius:12px;font-weight:800;font-size:1rem;cursor:pointer;margin-top:8px;transition:all .25s}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,245,212,.3)}
+@media(max-width:640px){.form-row{grid-template-columns:1fr}.contact-card{padding:32px 24px}}
+
+/* ─── FOOTER ─── */
+footer{background:var(--dark);border-top:1px solid var(--border);padding:48px 24px;text-align:center;position:relative;z-index:1}
+.footer-logo{font-family:'Space Grotesk',sans-serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:12px}
+.footer-logo span{color:var(--neon)}
+footer p{color:var(--muted);font-size:.82rem;line-height:1.8}
+.footer-links{display:flex;gap:24px;justify-content:center;margin:20px 0;flex-wrap:wrap}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:.82rem;transition:color .2s}
+.footer-links a:hover{color:var(--neon)}
+</style>
+</head>
+<body>
+
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-logo-icon">S</div>
+    <span class="nav-brand-text">Site<span>Sniper</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#how">How It Works</a>
+    <a href="#templates">Our Work</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Get My Free Site →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div style="max-width:900px;margin:0 auto">
+    <div class="hero-eyebrow"><span class="live-dot"></span> Now Serving MS · AL · LA</div>
+    <h1>
+      We Build Your<br/>
+      <span class="line2">Website For Free.</span>
+      <span class="line3" style="font-size:clamp(1.8rem,4vw,3.2rem);margin-top:8px;display:block">You Only Pay If You Love It.</span>
+    </h1>
+    <p class="hero-sub" style="margin-top:24px">SiteSniper creates stunning, professional websites for local service businesses — HVAC, plumbing, roofing, landscaping, and more. Zero upfront cost. We build first, you decide.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-neon">🚀 Get My Free Preview</a>
+      <a href="#how" class="btn-outline">See How It Works</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num"><span>$0</span></div><div class="lbl">To Get Your Preview</div></div>
+      <div class="hero-stat"><div class="num">48<span>hr</span></div><div class="lbl">Build Turnaround</div></div>
+      <div class="hero-stat"><div class="num">100<span>%</span></div><div class="lbl">Satisfaction Guarantee</div></div>
+      <div class="hero-stat"><div class="num"><span>$750</span></div><div class="lbl">One-Time Setup</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">48-Hour Turnaround</span>
+    <span class="ticker-item">HVAC</span>
+    <span class="ticker-item">Plumbing</span>
+    <span class="ticker-item">Roofing</span>
+    <span class="ticker-item">Electrician</span>
+    <span class="ticker-item">Landscaping</span>
+    <span class="ticker-item">Tree Services</span>
+    <span class="ticker-item">Pest Control</span>
+    <span class="ticker-item">Home Remodeling</span>
+    <span class="ticker-item">Residential Cleaning</span>
+    <span class="ticker-item">Mobile Optimized</span>
+    <span class="ticker-item">SSL Included</span>
+    <span class="ticker-item">Custom Domain</span>
+    <span class="ticker-item">Satisfaction Guaranteed</span>
+    <span class="ticker-item">No Long Contracts</span>
+    <span class="ticker-item">MS · AL · LA</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">48-Hour Turnaround</span>
+    <span class="ticker-item">HVAC</span>
+    <span class="ticker-item">Plumbing</span>
+    <span class="ticker-item">Roofing</span>
+    <span class="ticker-item">Electrician</span>
+    <span class="ticker-item">Landscaping</span>
+    <span class="ticker-item">Tree Services</span>
+    <span class="ticker-item">Pest Control</span>
+    <span class="ticker-item">Home Remodeling</span>
+    <span class="ticker-item">Residential Cleaning</span>
+    <span class="ticker-item">Mobile Optimized</span>
+    <span class="ticker-item">SSL Included</span>
+    <span class="ticker-item">Custom Domain</span>
+    <span class="ticker-item">Satisfaction Guaranteed</span>
+    <span class="ticker-item">No Long Contracts</span>
+    <span class="ticker-item">MS · AL · LA</span>
+  </div>
+</div>
+
+<!-- PROBLEM / FACTS SECTION -->
+<section class="section problem-section" id="why">
+  <div class="container">
+    <span class="section-eyebrow">The Hard Truth</span>
+    <h2 class="section-title">You're <span>Losing Money</span> Every Day Without a Website</h2>
+    <p class="section-sub">97% of people search online before hiring a local service contractor. If you're not there, you don't exist.</p>
+    <div class="problem-grid">
+
+      <div class="problem-card">
+        <div class="problem-num">01</div>
+        <h3>You're Invisible to Online Customers</h3>
+        <p>When someone searches "plumber near me" or "roofer in Jackson," contractors with websites show up first. Without one, you're not even in the conversation — those customers go straight to your competitor.</p>
+        <span class="problem-stat">97% search online first</span>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-num">02</div>
+        <h3>You're Losing Jobs Every Single Week</h3>
+        <p>Local service jobs average $500–$3,000 per ticket. Losing just 3 jobs a month to competitors with websites is $1,500–$9,000 in revenue gone — every single month, year after year.</p>
+        <span class="problem-stat">Avg. $1,500–$9,000/mo in lost work</span>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-num">03</div>
+        <h3>Zero Credibility Without One</h3>
+        <p>75% of consumers judge a business's credibility by its website. If a customer can't find you online, they assume you're either out of business or not serious. Word-of-mouth only goes so far.</p>
+        <span class="problem-stat">75% trust = website-based</span>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-num">04</div>
+        <h3>Your Competitors Are Already Online</h3>
+        <p>Every day you wait, a competitor is ranking higher on Google, capturing leads from your service area, and building a digital reputation you don't have yet. The longer you wait, the harder it gets.</p>
+        <span class="problem-stat">First page gets 92% of clicks</span>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-num">05</div>
+        <h3>After-Hours Leads Go to Waste</h3>
+        <p>You can't answer the phone 24/7 — but your website can. A good site captures after-hours inquiries, shows your services, and pre-sells customers before you even pick up the phone.</p>
+        <span class="problem-stat">40% of searches happen after 6pm</span>
+      </div>
+
+      <div class="problem-card">
+        <div class="problem-num">06</div>
+        <h3>A Contact Form Books Jobs While You Sleep</h3>
+        <p>Websites with a contact form convert up to 3x more visitors into paying customers. When someone lands on your site and can instantly request a quote or book a call, they do — instead of bouncing to find someone else.</p>
+        <span class="problem-stat">3x more conversions with a contact form</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how-section" id="how">
+  <div class="container">
+    <span class="section-eyebrow">The Process</span>
+    <h2 class="section-title">From Zero to <span>Live Website</span> in 48 Hours</h2>
+    <p class="section-sub">We do all the work. You just review it and say yes.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>We Find Your Business</h3>
+        <p>We identify local service contractors in your area who don't have a website and are missing out on online leads.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We Build Your Site Free</h3>
+        <p>Using your Google Business profile, reviews, photos, and services — we build a premium custom website. No forms to fill out. No homework for you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>You Get a Preview Link</h3>
+        <p>We send you a live preview link within 48 hours. Browse your fully built site on your phone before you commit to anything.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Love It? Go Live.</h3>
+        <p>If you love what you see, we collect $750 and deploy your site to a custom domain with SSL. If not — no hard feelings, no charge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR WORK CAROUSEL -->
+<section class="section templates-section" id="templates">
+  <div class="container">
+    <span class="section-eyebrow">Our Work</span>
+    <h2 class="section-title">Real Sites. <span>Real Businesses.</span></h2>
+    <p class="section-sub">Every site is custom-built for the actual business — using their real photos, reviews, and branding. No generic templates.</p>
+  </div>
+  <div class="template-track-wrap">
+    <div class="template-track">
+
+      <div class="template-card">
+        <div class="template-preview video-preview">
+          <video autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="https://base44.app/api/apps/69f101b202433ed2711860d0/files/mp/public/69f101b202433ed2711860d0/a9ad2cee4_8d88a1a5f_ScreenRecording_06-04-202619-08-20_1.mov" type="video/mp4">
+          </video>
+          <span class="preview-label">Patriot Heating & Cooling</span>
+        </div>
+        <div class="template-info"><h4>Patriot Heating & Cooling</h4><p>Veteran-owned HVAC · Troy, AL</p><span class="template-tag">HVAC</span></div>
+      </div>
+      <div class="template-card">
+        <div class="template-preview video-preview">
+          <video autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="https://base44.app/api/apps/69f101b202433ed2711860d0/files/mp/public/69f101b202433ed2711860d0/e4ba3d9c5_video2.mp4" type="video/mp4">
+          </video>
+          <span class="preview-label">Santana HVAC</span>
+        </div>
+        <div class="template-info"><h4>Santana HVAC</h4><p>Local HVAC contractor · Jackson, MS</p><span class="template-tag">HVAC</span></div>
+      </div>
+      <div class="template-card">
+        <div class="template-preview video-preview">
+          <video autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="https://base44.app/api/apps/69f101b202433ed2711860d0/files/mp/public/69f101b202433ed2711860d0/0487ab9bc_86dfe36e3_ScreenRecording_06-04-202619-17-19_1.mov" type="video/mp4">
+          </video>
+          <span class="preview-label">JMC Gas Fireplace</span>
+        </div>
+        <div class="template-info"><h4>JMC Gas Fireplace</h4><p>Fireplace install & repair · MS</p><span class="template-tag">HVAC / Fireplace</span></div>
+      </div>
+      <div class="template-card">
+        <div class="template-preview video-preview">
+          <video autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="https://base44.app/api/apps/69f101b202433ed2711860d0/files/mp/public/69f101b202433ed2711860d0/e5e078660_4823b94c0_ScreenRecording_06-04-202619-18-17_1.mov" type="video/mp4">
+          </video>
+          <span class="preview-label">Advance Tree Care</span>
+        </div>
+        <div class="template-info"><h4>Advance Tree Care</h4><p>Professional tree service · MS</p><span class="template-tag">Tree Service</span></div>
+      </div>
+      <div class="template-card">
+        <div class="template-preview video-preview">
+          <video autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="https://base44.app/api/apps/69f101b202433ed2711860d0/files/mp/public/69f101b202433ed2711860d0/7de348b41_fdc031677_ScreenRecording_06-04-202619-19-33_1.mov" type="video/mp4">
+          </video>
+          <span class="preview-label">Client Preview #5</span>
+        </div>
+        <div class="template-info"><h4>Client Preview #5</h4><p>Local service contractor · MS</p><span class="template-tag">Service</span></div>
+      </div>
+      <div class="template-card">
+        <div class="template-preview video-preview">
+          <video autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="https://base44.app/api/apps/69f101b202433ed2711860d0/files/mp/public/69f101b202433ed2711860d0/da1f3cc01_video6.mp4" type="video/mp4">
+          </video>
+          <span class="preview-label">Client Preview #6</span>
+        </div>
+        <div class="template-info"><h4>Client Preview #6</h4><p>Local service contractor · MS</p><span class="template-tag">Service</span></div>
+      </div>
+      <div class="template-card">
+        <div class="template-preview video-preview">
+          <video autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="https://base44.app/api/apps/69f101b202433ed2711860d0/files/mp/public/69f101b202433ed2711860d0/a9ad2cee4_8d88a1a5f_ScreenRecording_06-04-202619-08-20_1.mov" type="video/mp4">
+          </video>
+          <span class="preview-label">Patriot Heating & Cooling</span>
+        </div>
+        <div class="template-info"><h4>Patriot Heating & Cooling</h4><p>Veteran-owned HVAC · Troy, AL</p><span class="template-tag">HVAC</span></div>
+      </div>
+      <div class="template-card">
+        <div class="template-preview video-preview">
+          <video autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="https://base44.app/api/apps/69f101b202433ed2711860d0/files/mp/public/69f101b202433ed2711860d0/e4ba3d9c5_video2.mp4" type="video/mp4">
+          </video>
+          <span class="preview-label">Santana HVAC</span>
+        </div>
+        <div class="template-info"><h4>Santana HVAC</h4><p>Local HVAC contractor · Jackson, MS</p><span class="template-tag">HVAC</span></div>
+      </div>
+      <div class="template-card">
+        <div class="template-preview video-preview">
+          <video autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="https://base44.app/api/apps/69f101b202433ed2711860d0/files/mp/public/69f101b202433ed2711860d0/0487ab9bc_86dfe36e3_ScreenRecording_06-04-202619-17-19_1.mov" type="video/mp4">
+          </video>
+          <span class="preview-label">JMC Gas Fireplace</span>
+        </div>
+        <div class="template-info"><h4>JMC Gas Fireplace</h4><p>Fireplace install & repair · MS</p><span class="template-tag">HVAC / Fireplace</span></div>
+      </div>
+      <div class="template-card">
+        <div class="template-preview video-preview">
+          <video autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="https://base44.app/api/apps/69f101b202433ed2711860d0/files/mp/public/69f101b202433ed2711860d0/e5e078660_4823b94c0_ScreenRecording_06-04-202619-18-17_1.mov" type="video/mp4">
+          </video>
+          <span class="preview-label">Advance Tree Care</span>
+        </div>
+        <div class="template-info"><h4>Advance Tree Care</h4><p>Professional tree service · MS</p><span class="template-tag">Tree Service</span></div>
+      </div>
+      <div class="template-card">
+        <div class="template-preview video-preview">
+          <video autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="https://base44.app/api/apps/69f101b202433ed2711860d0/files/mp/public/69f101b202433ed2711860d0/7de348b41_fdc031677_ScreenRecording_06-04-202619-19-33_1.mov" type="video/mp4">
+          </video>
+          <span class="preview-label">Client Preview #5</span>
+        </div>
+        <div class="template-info"><h4>Client Preview #5</h4><p>Local service contractor · MS</p><span class="template-tag">Service</span></div>
+      </div>
+      <div class="template-card">
+        <div class="template-preview video-preview">
+          <video autoplay muted loop playsinline preload="metadata" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <source src="https://base44.app/api/apps/69f101b202433ed2711860d0/files/mp/public/69f101b202433ed2711860d0/da1f3cc01_video6.mp4" type="video/mp4">
+          </video>
+          <span class="preview-label">Client Preview #6</span>
+        </div>
+        <div class="template-info"><h4>Client Preview #6</h4><p>Local service contractor · MS</p><span class="template-tag">Service</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section features-section">
+  <div class="container">
+    <span class="section-eyebrow">What's Included</span>
+    <h2 class="section-title">Everything You Need to <span>Win Online</span></h2>
+    <p class="section-sub">No upsells. No hidden fees. Everything is included from day one.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Built in 48 Hours</h3>
+        <p>We pull your Google Business photos, reviews, and services and have a live preview ready for you within two business days.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>100% Mobile Optimized</h3>
+        <p>Over 70% of local searches happen on phones. Your site looks and performs flawlessly on every screen size.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Free SSL Certificate</h3>
+        <p>Every site comes with HTTPS security included. Google ranks secure sites higher, and customers trust them more.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>Custom Domain Included</h3>
+        <p>Your own .com domain — yourcompanyname.com — registered and connected for you. No domain registrar headaches.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Lightning Fast Loading</h3>
+        <p>Slow websites lose customers. Our sites are optimized for speed — scoring 90+ on Google PageSpeed for maximum search visibility.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Built to Convert</h3>
+        <p>Every element — from the hero section to the contact form — is designed to turn website visitors into phone calls and booked jobs.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" style="font-size:1.8rem">✅</div>
+        <h3>Satisfaction Guarantee</h3>
+        <p>If you don't love your site preview, you owe absolutely nothing. We build first — you decide. Zero risk on your end.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3>Fully Managed Hosting</h3>
+        <p>We handle all the technical stuff — hosting, uptime, updates, and security. You focus on your business, we keep your site running.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section pricing-section" id="pricing">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:56px">
+      <span class="section-eyebrow">Simple Pricing</span>
+      <h2 class="section-title">Straightforward. <span>No Surprises.</span></h2>
+      <p class="section-sub" style="margin:0 auto">One price. Everything included. No long-term contracts.</p>
+    </div>
+    <div class="pricing-wrap">
+      <div class="pricing-card">
+        <div class="pricing-top">
+          <div class="pricing-badge">🔥 Most Popular</div>
+          <div class="pricing-amount"><sup>$</sup>750</div>
+          <div class="pricing-period">one-time setup fee</div>
+          <div class="pricing-recurring">then $100/month hosting — cancel anytime</div>
+        </div>
+        <div class="pricing-features">
+          <div class="pricing-feature"><div class="check">✓</div>Custom website built from your GMB profile</div>
+          <div class="pricing-feature"><div class="check">✓</div>Custom .com domain included</div>
+          <div class="pricing-feature"><div class="check">✓</div>Mobile-optimized, SSL-secured</div>
+          <div class="pricing-feature"><div class="check">✓</div>Contact form + click-to-call button</div>
+          <div class="pricing-feature"><div class="check">✓</div>Built in 48 hours or less</div>
+          <div class="pricing-feature"><div class="check">✓</div>30 days free hosting included</div>
+          <div class="pricing-feature"><div class="check">✓</div>Fully managed — no tech skills needed</div>
+          <div class="pricing-feature"><div class="check">✓</div>100% satisfaction guarantee</div>
+        </div>
+        <div class="pricing-cta">
+          <a href="#contact" class="pricing-btn">Get My Free Preview First →</a>
+          <p class="pricing-note">⚡ We build your site for free. You only pay if you love it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px">
+      <span class="section-eyebrow">Get Started</span>
+      <h2 class="section-title">Ready to See Your <span>Free Preview?</span></h2>
+      <p class="section-sub" style="margin:0 auto">Fill out the form and we'll have your custom site preview ready within 48 hours. No commitment required.</p>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-card">
+        <div class="contact-methods">
+          <div class="contact-method">
+            <div class="icon">📞</div>
+            <div><h4>Call or Text</h4><p>(601) 429-4573</p></div>
+          </div>
+          <div class="contact-method">
+            <div class="icon">✉️</div>
+            <div><h4>Email Us</h4><p>noel@sitesniper.pro</p></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Your Name</label><input type="text" placeholder="John Smith"/></div>
+          <div class="form-group"><label>Business Name</label><input type="text" placeholder="Smith Plumbing"/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(601) 555-0000"/></div>
+          <div class="form-group"><label>Service Type</label>
+            <select>
+              <option value="" disabled selected>Select your niche</option>
+              <option value="hvac">HVAC / Air Conditioning</option>
+              <option value="plumbing">Plumbing</option>
+              <option value="electrician">Electrician</option>
+              <option value="roofing">Roofing</option>
+              <option value="tree">Tree Services</option>
+              <option value="landscaping">Landscaping</option>
+              <option value="residential_cleaning">Residential Cleaning</option>
+              <option value="commercial_cleaning">Commercial Cleaning</option>
+              <option value="remodeling">Home Remodeling</option>
+              <option value="pest">Pest Control</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>City &amp; State</label><input type="text" placeholder="Jackson, MS"/></div>
+        <div class="form-group"><label>Anything else we should know? (optional)</label><textarea placeholder="Tell us about your business..."></textarea></div>
+        <button class="form-submit">🚀 Request My Free Preview →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Site<span>Sniper</span></div>
+  <div class="footer-links">
+    <a href="#how">How It Works</a>
+    <a href="#templates">Our Work</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <p>Serving Mississippi · Alabama · Louisiana</p>
+  <p style="margin-top:8px">© 2026 SiteSniper. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
