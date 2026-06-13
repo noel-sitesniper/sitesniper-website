@@ -107,14 +107,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 40px;display:f
 
 /* ─── TEMPLATES CAROUSEL ─── */
 .templates-section{background:var(--dark2);overflow:hidden}
-.template-track-wrap{overflow:hidden;position:relative;margin-top:48px}
+
 .template-track-wrap::before,.template-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
 .template-track-wrap::before{left:0;background:linear-gradient(90deg,var(--dark2),transparent)}
 .template-track-wrap::after{right:0;background:linear-gradient(-90deg,var(--dark2),transparent)}
-.template-track{display:flex;gap:24px;animation:slideTrack 40s linear infinite;width:max-content}
+
 .template-track:hover{animation-play-state:paused}
-@keyframes slideTrack{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.template-card{width:360px;flex-shrink:0;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--card);transition:all .35s;cursor:pointer}
+
+
 .template-card:hover{border-color:rgba(0,245,212,.3);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
 .template-preview{height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#0d0d1f}
 .template-preview img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
